@@ -13,12 +13,12 @@ categories = ['world', 'us', 'business', 'technology', 'health', 'sports', 'scie
 train_data = load_files(container_path='/Users/dongmin/DMA_project3/CC/text/train', categories=categories, shuffle=True,
                         encoding='utf-8', decode_error='replace')
 
-# TODO - 2-1-1. Build pipeline for Naive Bayes Classifier
+# Build pipeline for Naive Bayes Classifier
 clf_nb = Pipeline([('vect', CountVectorizer(stop_words='english',max_features=7000,max_df=.15)),
                    ('tfidf', TfidfTransformer()), ('clf', MultinomialNB())])
 clf_nb.fit(train_data.data, train_data.target)
 
-# TODO - 2-1-2. Build pipeline for SVM Classifier
+# Build pipeline for SVM Classifier
 clf_svm = Pipeline([('vect', CountVectorizer(stop_words='english',max_df=.15,max_features=7000)),
                     ('tfidf', TfidfTransformer()),
                     ('clf', SVC(kernel='rbf',decision_function_shape='ovo', gamma=1, C=100))])
